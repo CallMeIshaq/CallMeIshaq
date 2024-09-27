@@ -1,0 +1,508 @@
+<html><head><base href="https://www.blissfulhennabyismat.com/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blissful Henna by Ismat</title>
+<style>
+  :root {
+    --cream: #f8f3e6;
+    --light-green: #c7e2d0;
+    --dark-green: #4a7c59;
+    --gold: #d4af37;
+    --warm-brown: #8B5A2B;
+  }
+  
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif;
+    background-color: var(--cream);
+    color: var(--dark-green);
+    transition: background-color 0.5s ease;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  header {
+    background-color: var(--light-green);
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  nav ul li {
+    margin: 0 15px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: var(--dark-green);
+    font-size: 18px;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: var(--gold);
+  }
+  
+  .hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://cdn.discordapp.com/attachments/1061666519727223016/1289206729153708072/your-logo.png.jpg?ex=66f7fad4&is=66f6a954&hm=47db1b7a445e0dd28e4210fd08c111e6c299a8e86673b936f9586e0b836ccc8b');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    transition: transform 0.5s ease;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(84, 189, 84, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 0;
+}
+
+.hero-content {
+    z-index: 1;
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+  
+  .hero h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: 1.5rem;
+  }
+  
+  .section {
+    padding: 80px 0;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: var(--dark-green);
+  }
+  
+  .portfolio {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .portfolio-item:hover img {
+    transform: scale(1.1);
+  }
+  
+  .services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .service-item {
+    flex-basis: calc(33.333% - 20px);
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  
+  .service-item h3 {
+    margin-top: 20px;
+    color: var(--gold);
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--gold);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: var(--dark-green);
+  }
+  
+  footer {
+    background-color: var(--light-green);
+    color: var(--dark-green);
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  .social-icons {
+    margin-top: 20px;
+  }
+  
+  .social-icons a {
+    color: var(--dark-green);
+    font-size: 24px;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+  }
+  
+  .social-icons a:hover {
+    color: var(--gold);
+  }
+  
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 3rem;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+    }
+    
+    .service-item {
+      flex-basis: calc(50% - 20px);
+    }
+  }
+
+  .form-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--cream);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .form-center.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .form-group {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--dark-green);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--light-green);
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+    outline: none;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    background-color: var(--gold);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .btn:hover {
+    background-color: var(--dark-green);
+  }
+
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .testimonial-item {
+    background-color: var(--light-green);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .testimonial-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .testimonial-item p {
+    font-style: italic;
+    color: var(--dark-green);
+    margin: 0;
+  }
+
+  .testimonial-item h4 {
+    margin-top: 10px;
+    color: var(--gold);
+    font-weight: bold;
+  }
+
+  .hero {
+    transition: transform 0.5s ease;
+  }
+
+  .hero:hover {
+    transform: scale(1.02);
+  }
+
+  .portfolio-item {
+    transition: transform 0.3s ease;
+  }
+
+  .portfolio-item:hover {
+    transform: scale(1.05);
+  }
+
+  .testimonial-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .testimonial-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .form-center {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .form-center.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Ismat</a></li>
+        <li><a href="#portfolio">Henna Portfolio</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#book">Book a Henna Appointment</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Blissful Henna by Ismat</h1>
+        <p>Bringing Blissful Henna to Life</p>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">About Ismat</h2>
+        <p>Ismat is a passionate henna artist with over a decade of experience in creating stunning, intricate designs. Her journey with henna began as a cultural tradition and blossomed into a full-fledged artistic career. Ismat's unique style blends traditional motifs with contemporary elements, resulting in breathtaking designs that tell a story on skin.</p>
+      </div>
+    </section>
+
+    <section id="portfolio" class="section">
+      <div class="container">
+        <h2 class="section-title">Henna Portfolio</h2>
+        <div class="portfolio">
+          <div class="portfolio-item">
+            <img src="https://cdn.discordapp.com/attachments/1061666519727223016/1289204976593408065/henna-design1.jpg.jpg?ex=66f7f932&is=66f6a7b2&hm=3d3375460f065a52fab59c213d98d5bdf19a66dc8b976c534874c01fb97102ce" alt="Henna Design 1">
+          </div>
+          <div class="portfolio-item">
+            <img src="https://cdn.discordapp.com/attachments/1061666519727223016/1289204976849129493/henna-design2.jpg.jpg?ex=66f7f932&is=66f6a7b2&hm=82e77abab47efe0c883c7d00649d0096f0a906278c31da9287d18f0e9359d2cd&" alt="Henna Design 2">
+          </div>
+          <div class="portfolio-item">
+            <img src="https://cdn.discordapp.com/attachments/1061666519727223016/1289204977197252649/henna-design3.jpg.jpg?ex=66f7f932&is=66f6a7b2&hm=7579e8336fa93abeec97b8825d37688dc1dbfe43124ef4455e794c82c954453b&" alt="Henna Design 3">
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="services" class="section">
+      <div class="container">
+        <h2 class="section-title">Services</h2>
+        <div class="services">
+          <!-- Removed service items -->
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+          <a href="#book" class="btn">Book Now</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="section">
+      <div class="container">
+        <h2 class="section-title">Client Testimonials</h2>
+        <div class="testimonials">
+          <div class="testimonial-item">
+            <p>"Ismat did an amazing job with my bridal henna! The designs were stunning and lasted for weeks!"</p>
+            <h4>- Sarah J.</h4>
+          </div>
+          <div class="testimonial-item">
+            <p>"I loved my henna for the party! Ismat is so talented and creative. Highly recommend!"</p>
+            <h4>- Emily R.</h4>
+          </div>
+          <div class="testimonial-item">
+            <p>"The personalized designs were exactly what I wanted. Thank you, Ismat!"</p>
+            <h4>- Aisha K.</h4>
+          </div>
+          <div class="testimonial-item">
+            <p>"Absolutely loved my henna! Ismat is a true artist!"</p>
+            <h4>- Mia T.</h4>
+          </div>
+          <!-- Add more testimonials as needed -->
+        </div>
+      </div>
+    </section>
+
+    <section id="book" class="section">
+      <div class="container">
+        <h2 class="section-title">Book a Henna Appointment</h2>
+        <form method="POST" class="form-center">
+          <div class="form-group">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+
+          <div class="form-group">
+            <label for="service">Service Type:</label>
+            <select id="service" name="service" required>
+              <option value="Bridal Henna">Bridal Henna</option>
+              <option value="Party Henna">Party Henna</option>
+              <option value="Personalized Designs">Personalized Designs</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="date">Preferred Date:</label>
+            <input type="date" id="date" name="date" required>
+          </div>
+
+          <div class="form-group">
+            <label for="comments">Additional Comments:</label>
+            <textarea id="comments" name="comments" rows="4"></textarea>
+          </div>
+
+          <button type="submit" class="btn">Submit Booking</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Blissful Henna by Ismat. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/blissfulhennabyismat"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/blissfulhennabyismat"><i class="fab fa-facebook"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Animation on scroll
+    const testimonials = document.querySelectorAll('.testimonial-item');
+    const form = document.querySelector('.form-center');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    });
+
+    testimonials.forEach(item => observer.observe(item));
+    observer.observe(form);
+
+    // Add more JavaScript for additional functionality (e.g., image gallery, booking system)
+  </script>
+</body>
+</html>
